@@ -38,6 +38,8 @@ return {
 
   -- You can disable default plugins as follows:
   { "max397574/better-escape.nvim", enabled = false },
+  { "Civitasv/cmake-tools.nvim", enabled = false },
+  { "jay-babu/mason-nvim-dap.nvim", enabled = false },
 
   -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
   {
