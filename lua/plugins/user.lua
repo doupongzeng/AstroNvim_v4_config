@@ -1,5 +1,3 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
-
 -- You can also add or configure plugins by creating files in this `plugins/` folder
 -- Here are some examples:
 
@@ -8,7 +6,6 @@ return {
 
   -- == Examples of Adding Plugins ==
 
-  "andweeb/presence.nvim",
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
@@ -80,6 +77,59 @@ return {
         -- disable for .vim files, but it work for another filetypes
         Rule("a", "a", "-vim")
       )
+    end,
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    keys = { ":", "/", "?" },
+    dependencies = {
+      "hrsh7th/cmp-cmdline",
+    },
+    config = function(_, opts)
+      local cmp = require "cmp"
+      cmp.setup(opts)
+
+      local mapkey = {
+        ["<C-j>"] = {
+          c = function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            else
+              fallback()
+            end
+          end,
+        },
+        ["<C-k>"] = {
+          c = function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            else
+              fallback()
+            end
+          end,
+        },
+      }
+
+      cmp.setup.cmdline("/", {
+        mapping = cmp.mapping.preset.cmdline(mapkey),
+        sources = {
+          { name = "buffer" },
+        },
+      })
+
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(mapkey),
+        sources = cmp.config.sources({
+          { name = "path" },
+        }, {
+          {
+            name = "cmdline",
+            options = {
+              ignore_cmds = { "Man", "!" },
+            },
+          },
+        }),
+      })
     end,
   },
 }

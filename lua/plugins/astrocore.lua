@@ -1,5 +1,3 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
-
 -- AstroCore provides a central place to modify mappings, vim options, autocommands, and more!
 -- Configuration documentation can be found with `:h astrocore`
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
@@ -37,6 +35,18 @@ return {
         -- configure global vim variables (vim.g)
         -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
         -- This can be found in the `lua/lazy_setup.lua` file
+        clipboard = {
+          name = "WslClipboard",
+          copy = {
+            ["+"] = "clip.exe",
+            ["*"] = "clip.exe",
+          },
+          paste = {
+            ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+            ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+          },
+          cache_enabled = 0,
+        },
       },
     },
     -- Mappings can be configured through AstroCore as well.
@@ -64,10 +74,35 @@ return {
         ["<Leader>b"] = { desc = "Buffers" },
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+        ["<C-_>"] = {
+          function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
+          desc = "Toggle comment line",
+        },
+        ["<C-n>"] = { "<cmd>Neotree toggle<cr>", desc = "Toggle Explorer" },
+        ["<leader>4"] = { "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch src/hdr" },
+        ["<leader>tt"] = { "<cmd>ToggleTerm direction=float<cr>", desc = "ToggleTerm float default" },
+        ["<leader>lH"] = {
+          function()
+            if vim.lsp.inlay_hint.is_enabled(nil) then
+              vim.lsp.inlay_hint.enable(nil, false)
+            else
+              vim.lsp.inlay_hint.enable(nil, true)
+            end
+          end,
+          desc = "Toggle inlay_hint",
+        },
       },
       t = {
         -- setting a mapping to false will disable it
         -- ["<esc>"] = false,
+      },
+      v = {
+        -- setting a mapping to false will disable it
+        -- ["<esc>"] = false,
+        ["<C-_>"] = {
+          "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
+          desc = "Toggle comment for selection",
+        },
       },
     },
   },
