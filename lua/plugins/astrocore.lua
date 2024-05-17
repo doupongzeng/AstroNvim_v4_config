@@ -85,11 +85,7 @@ return {
         ["<leader>tt"] = { "<cmd>ToggleTerm direction=float<cr>", desc = "ToggleTerm float default" },
         ["<leader>lH"] = {
           function()
-            if vim.lsp.inlay_hint.is_enabled(nil) then
-              vim.lsp.inlay_hint.enable(nil, false)
-            else
-              vim.lsp.inlay_hint.enable(nil, true)
-            end
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
           end,
           desc = "Toggle inlay_hint",
         },
