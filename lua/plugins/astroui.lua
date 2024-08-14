@@ -14,6 +14,9 @@ return {
     highlights = {
       init = { -- this table overrides highlights in all themes
         -- Normal = { bg = "#000000" },
+        LspReferenceRead = { fg = "", bg = "#666666" },
+        LspReferenceText = { fg = "", bg = "#666666" },
+        LspReferenceWrite = { fg = "", bg = "#666666" },
       },
       astrotheme = { -- a table of overrides/changes when applying the astrotheme theme
         -- Normal = { bg = "#000000" },

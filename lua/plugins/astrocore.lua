@@ -36,18 +36,18 @@ return {
         -- configure global vim variables (vim.g)
         -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
         -- This can be found in the `lua/lazy_setup.lua` file
-        clipboard = {
-          name = "WslClipboard",
-          copy = {
-            ["+"] = "clip.exe",
-            ["*"] = "clip.exe",
-          },
-          paste = {
-            ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-            ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-          },
-          cache_enabled = 0,
-        },
+        -- clipboard = {
+        --   name = "WslClipboard",
+        --   copy = {
+        --     ["+"] = "clip.exe",
+        --     ["*"] = "clip.exe",
+        --   },
+        --   paste = {
+        --     ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        --     ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        --   },
+        --   cache_enabled = 0,
+        -- },
         deepl_api_auth_key=os.getenv("DEEPL_API_AUTH_KEY")
       },
     },
