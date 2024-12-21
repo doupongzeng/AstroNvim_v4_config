@@ -48,7 +48,7 @@ return {
         --   },
         --   cache_enabled = 0,
         -- },
-        deepl_api_auth_key=os.getenv("DEEPL_API_AUTH_KEY")
+        deepl_api_auth_key = os.getenv "DEEPL_API_AUTH_KEY",
       },
     },
     -- Mappings can be configured through AstroCore as well.
@@ -84,15 +84,18 @@ return {
         ["<leader>4"] = { "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch src/hdr" },
         ["<leader>tt"] = { "<cmd>ToggleTerm direction=float<cr>", desc = "ToggleTerm float default" },
         ["<leader>lH"] = {
-          function()
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
-          end,
+          function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled {}) end,
           desc = "Toggle inlay_hint",
         },
+        ["<M-'>"] = { '<Cmd>execute v:count . "ToggleTerm"<CR>', desc = "Toggle terminal" },
       },
       t = {
         -- setting a mapping to false will disable it
         -- ["<esc>"] = false,
+        ["<M-'>"] = { "<Cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
+      },
+      i = {
+        ["<M-'>"] = { "<Esc><Cmd>ToggleTerm<CR>", desc = "Toggle terminal" },
       },
       v = {
         -- setting a mapping to false will disable it
