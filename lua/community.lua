@@ -16,4 +16,5 @@ return {
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
   { import = "astrocommunity.completion.copilot-cmp" },
   { import = "astrocommunity.editing-support.copilotchat-nvim" },
+  { import = "astrocommunity.search.grug-far-nvim" },
 }
