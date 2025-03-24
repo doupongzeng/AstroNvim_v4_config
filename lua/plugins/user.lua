@@ -64,6 +64,13 @@ return {
   { "max397574/better-escape.nvim", enabled = false },
   { "Civitasv/cmake-tools.nvim", enabled = false },
   { "jay-babu/mason-nvim-dap.nvim", enabled = false },
+  
+  {"CopilotC-Nvim/CopilotChat.nvim",
+     opts = function(_, opts)
+       opts.model = "claude-3.7-sonnet"
+       return opts
+     end,
+   },
 
   -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
   {
